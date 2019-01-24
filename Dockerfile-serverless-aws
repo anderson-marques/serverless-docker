@@ -1,0 +1,14 @@
+# marquesanderson/serverless-aws:1.0.0-alpine
+FROM marquesanderson/serverless:1.0.0-alpine
+LABEL maintainer="anderson.mo.carvalho@gmail.com"
+
+# Installs Python & PIP
+RUN apk add --update \
+    python \
+    py-pip \
+    && pip install --upgrade pip  \
+    && rm -rf /var/cache/apk/*
+
+# Installs AWS Cli
+RUN pip install awscli --upgrade --no-warn-script-location
+CMD [ "serverless" ]
